@@ -27,7 +27,7 @@ public class Value
 
     public Value Add(Value other)
     {
-        var val = new Value(Data + other.Data) 
+        var val = new Value(Data + other.Data)
         {
             Op = "+",
             Children = new HashSet<Value>()
@@ -36,7 +36,7 @@ public class Value
                 other,
             }
         };
-        
+
         val.Backward = () =>
         {
             Grad = val.Grad;
@@ -48,7 +48,7 @@ public class Value
 
     public Value Mul(Value other)
     {
-        var val = new Value(Data * other.Data) 
+        var val = new Value(Data * other.Data)
         {
             Op = "*",
             Children = new HashSet<Value>()
@@ -57,7 +57,7 @@ public class Value
                 other,
             }
         };
-        
+
         val.Backward = () =>
         {
             Grad = val.Grad * other.Data;
@@ -70,5 +70,11 @@ public class Value
     public override string ToString()
     {
         return $"Value(data = {Data})";
+    }
+
+    public override bool Equals(object? o)
+    {
+        if (o == null) return false;
+        return Data.Equals(((Value)o).Data);
     }
 }
