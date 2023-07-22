@@ -109,4 +109,10 @@ public class Matrix
 
         return output;
     }
+
+    public Value Det()
+    {
+        
+        return new Value(0.0);
+    }
 }
